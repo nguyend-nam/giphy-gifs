@@ -1,5 +1,10 @@
 import qs from "qs";
-import { GetTrendingGifsRequest, GetTrendingGifsResponse } from "../types";
+import {
+  GetSearchSuggestionsRequest,
+  GetSearchSuggestionsResponse,
+  GetTrendingGifsRequest,
+  GetTrendingGifsResponse,
+} from "../types";
 import fetcher from "./fetcher";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -25,17 +30,30 @@ class Client {
     return cloned;
   }
 
-  public getTrendingGifs(params: GetTrendingGifsRequest) {
-    const {
-      limit = 20,
-      offset = 0,
-      rating = "g",
-      bundle = "messaging_non_clips",
-    } = params;
+  public getTrendingGifs({
+    limit = 20,
+    offset = 0,
+    rating = "g",
+    bundle = "messaging_non_clips",
+  }: GetTrendingGifsRequest) {
     return fetcher<GetTrendingGifsResponse>(
-      `${BASE_URL}/trending?${qs.stringify({
+      `${BASE_URL}/gifs/trending?${qs.stringify({
         api_key: API_KEY,
         ...{ limit, offset, rating, bundle },
+      })}`,
+      {
+        method: "GET",
+        headers: {
+          ...this.headers,
+        },
+      }
+    );
+  }
+
+  public getSearchSuggestions({ term }: GetSearchSuggestionsRequest) {
+    return fetcher<GetSearchSuggestionsResponse>(
+      `${BASE_URL}/tags/related/${term}?${qs.stringify({
+        api_key: API_KEY,
       })}`,
       {
         method: "GET",

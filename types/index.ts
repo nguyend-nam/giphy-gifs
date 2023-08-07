@@ -12,6 +12,11 @@ export interface Meta {
 
 export interface BaseResponse<T> {
   data: T;
+  meta: Meta;
+}
+
+export interface BaseResponseWithPagination<T> {
+  data: T;
   pagination: Pagination;
   meta: Meta;
 }
@@ -28,7 +33,7 @@ export interface GetTrendingGifsRequest {
 }
 
 export interface GetTrendingGifsResponse
-  extends BaseResponse<TrendingGifItem[]> {}
+  extends BaseResponseWithPagination<TrendingGifItem[]> {}
 
 export interface TrendingGifItem {
   type: string;
@@ -98,4 +103,16 @@ export interface Analytics {
 
 export interface AnalyticEvents {
   url: string;
+}
+
+export interface GetSearchSuggestionsRequest {
+  term: string;
+}
+
+export interface GetSearchSuggestionsResponse
+  extends BaseResponse<GetSearchSuggestionItem[]> {}
+
+export interface GetSearchSuggestionItem {
+  name: string;
+  analytics_response_payload: string;
 }
