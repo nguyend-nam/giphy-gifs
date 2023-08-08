@@ -50,9 +50,9 @@ export const InfiniteScroll = (props: Props<TrendingGifItem[]>) => {
       {renderedAmount < totalItems ? (
         <div
           className={cx(
-            "h-[100px] w-full bg-transparent flex justify-center items-center",
+            "h-[100px] w-full bg-transparent flex justify-center items-center overflow-hidden",
             {
-              "opacity-0 h-2": !nextPageSWR.isLoading,
+              "!opacity-0 !h-2": !nextPageSWR.isLoading,
             }
           )}
           ref={loadingRef}
