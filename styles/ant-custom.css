@@ -19,6 +19,7 @@
 .ant-select-selection-placeholder {
   display: flex !important;
   align-items: center !important;
+  font-size: 18px !important;
 }
 
 .ant-spin-dot .ant-spin-dot-item {

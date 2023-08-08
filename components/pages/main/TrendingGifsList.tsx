@@ -10,11 +10,22 @@ import {
   IMAGE_BG_PLACEHOLDER,
   INFINITE_LOAD_PAGE_SIZE,
 } from "../../../constants";
+import { useIntroContext } from "../../../context/intro";
 
 export const TrendingGifsList = () => {
   const { data, loading, isFirstLoading } = useFetchTrendingGifs({
     limit: INFINITE_LOAD_PAGE_SIZE,
   });
+  const { shouldEnd, setShouldEnd } = useIntroContext();
+
+  useEffect(() => {
+    if (!shouldEnd) {
+      if (!(loading || isFirstLoading)) {
+        setShouldEnd?.(true);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, isFirstLoading]);
 
   let content: JSX.Element | null = null;
 

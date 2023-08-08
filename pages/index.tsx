@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { MainPageView } from "../components/pages/main/MainPageView";
+import { IntroContextProvider } from "../context/intro";
 
 const Home = () => {
   return (
@@ -7,7 +8,10 @@ const Home = () => {
       <Head>
         <title>Giphy</title>
       </Head>
-      <MainPageView />
+
+      <IntroContextProvider>
+        <MainPageView />
+      </IntroContextProvider>
     </>
   );
 };
