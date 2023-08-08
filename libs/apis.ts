@@ -31,9 +31,9 @@ class Client {
   }
 
   public getTrendingGifs({
-    limit = 20,
-    offset = 0,
-    rating = "g",
+    limit,
+    offset = 25,
+    rating = "pg-13",
     bundle = "messaging_non_clips",
   }: GetTrendingGifsRequest) {
     return fetcher<GetTrendingGifsResponse>(

@@ -3,8 +3,13 @@ import { Dispatch, SetStateAction, useState, useEffect } from "react";
 import useDebounce from "../../../hooks/useDebounce";
 import { client } from "../../../libs/apis";
 import { GetSearchSuggestionItem } from "../../../types";
+import cx from "classnames";
 
-export const GifSearch = () => {
+interface Props {
+  className?: string;
+}
+
+export const GifSearch = ({ className }: Props) => {
   const [options, setOptions] = useState<GetSearchSuggestionItem[] | []>([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
@@ -16,7 +21,7 @@ export const GifSearch = () => {
   }, [debouncedSearch]);
 
   return (
-    <div className="w-screen flex justify-center p-4">
+    <div className={cx("flex justify-center p-4", className)}>
       <AutoComplete
         className="w-[200px]"
         options={options.map((o) => ({ label: o.name, value: o.name }))}
