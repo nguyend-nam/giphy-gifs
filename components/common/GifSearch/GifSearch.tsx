@@ -1,18 +1,33 @@
-import { AutoComplete, Spin } from "antd";
-import { Dispatch, SetStateAction, useState, useEffect } from "react";
+import { AutoComplete, Button, Form, Spin } from "antd";
+import {
+  Dispatch,
+  SetStateAction,
+  useState,
+  useEffect,
+  createRef,
+} from "react";
 import useDebounce from "../../../hooks/useDebounce";
 import { client } from "../../../libs/apis";
 import { GetSearchSuggestionItem } from "../../../types";
 import cx from "classnames";
+import { SearchOutlined } from "@ant-design/icons";
 
 interface Props {
   className?: string;
+  onChange: Dispatch<SetStateAction<string>>;
 }
 
-export const GifSearch = ({ className }: Props) => {
+export const GifSearch = ({ className, onChange }: Props) => {
   const [options, setOptions] = useState<GetSearchSuggestionItem[] | []>([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
+  const ref = createRef<any>();
+
+  useEffect(() => {
+    if (!search) {
+      onChange(search);
+    }
+  }, [onChange, search]);
 
   const debouncedSearch = useDebounce(search, 300);
 
@@ -21,11 +36,20 @@ export const GifSearch = ({ className }: Props) => {
   }, [debouncedSearch]);
 
   return (
-    <div className={cx("flex justify-center p-4", className)}>
+    <Form
+      className={cx("flex justify-center py-4 gap-4", className)}
+      noValidate
+      onFinish={() => {
+        onChange(search);
+        ref?.current?.blur();
+      }}
+    >
       <AutoComplete
-        className="w-[200px]"
+        ref={ref}
+        className="flex-1 h-14"
         options={options.map((o) => ({ label: o.name, value: o.name }))}
         onSearch={setSearch}
+        onSelect={setSearch}
         placeholder="Search all the GIFs"
         dropdownRender={(menu) =>
           loading ? (
@@ -37,7 +61,16 @@ export const GifSearch = ({ className }: Props) => {
           )
         }
       />
-    </div>
+      <Button
+        htmlType="submit"
+        type="primary"
+        className="h-14 w-14 bg-gradient-to-tr from-indigo-500 to-rose-500 !border-none !shrink-0"
+      >
+        <div className="flex justify-center items-center">
+          <SearchOutlined className="text-3xl h-[30px] flex" />
+        </div>
+      </Button>
+    </Form>
   );
 };
 

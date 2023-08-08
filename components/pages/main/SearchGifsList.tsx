@@ -1,4 +1,3 @@
-import { useFetchTrendingGifs } from "../../../hooks/useFetchTrendingGifs";
 import { Masonry } from "react-plock";
 import { randomItem } from "../../../utils/common";
 import { GifImageItem } from "../../common/GifImageItem";
@@ -6,13 +5,19 @@ import { InfiniteScroll } from "../../common/InfiniteScroll";
 import { Empty, Spin } from "antd";
 import { TrendingGifItem } from "../../../types";
 import { useEffect, useState } from "react";
+import { useFetchGifsBySearchTerm } from "../../../hooks/useFetchGifsBySearchTerm";
 import {
   IMAGE_BG_PLACEHOLDER,
   INFINITE_LOAD_PAGE_SIZE,
 } from "../../../constants";
 
-export const TrendingGifsList = () => {
-  const { data, loading, isFirstLoading } = useFetchTrendingGifs({
+interface Props {
+  query: string;
+}
+
+export const SearchGifsList = ({ query }: Props) => {
+  const { data, loading, isFirstLoading } = useFetchGifsBySearchTerm({
+    q: query,
     limit: INFINITE_LOAD_PAGE_SIZE,
   });
 
@@ -46,7 +51,8 @@ export const TrendingGifsList = () => {
         )}
         pageSize={INFINITE_LOAD_PAGE_SIZE}
         totalItems={data?.pagination?.total_count || 0}
-        itemGetter={useFetchTrendingGifs}
+        itemGetter={useFetchGifsBySearchTerm}
+        commonItemGetterParams={{ q: query }}
       />
     );
   }
@@ -67,7 +73,7 @@ const GifImageItemRender = ({ item }: { item: TrendingGifItem }) => {
       preview={false}
       alt={item.title}
       src={item.images.fixed_height_downsampled.url}
-      className="object-cover absolute bg-transparent"
+      className="object-cover absolute"
       wrapperClassName="block"
       containerClassName="!rounded-md overflow-hidden relative"
       containerStyle={{

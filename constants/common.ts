@@ -1,0 +1,1 @@
+export const INFINITE_LOAD_PAGE_SIZE = 25;

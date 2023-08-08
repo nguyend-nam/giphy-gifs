@@ -116,3 +116,15 @@ export interface GetSearchSuggestionItem {
   name: string;
   analytics_response_payload: string;
 }
+
+export interface GetGifsBySearchTermRequest {
+  q: string;
+  limit?: number;
+  offset?: number;
+  rating?: "g" | "pg" | "pg-13" | "r";
+  bundle?:
+    | "messaging_non_clips"
+    | "clips_grid_picker"
+    | "sticker_layering"
+    | "low_bandwidth";
+}

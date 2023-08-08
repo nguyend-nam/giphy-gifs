@@ -1,5 +1,7 @@
 import qs from "qs";
+import { INFINITE_LOAD_PAGE_SIZE } from "../constants";
 import {
+  GetGifsBySearchTermRequest,
   GetSearchSuggestionsRequest,
   GetSearchSuggestionsResponse,
   GetTrendingGifsRequest,
@@ -31,7 +33,7 @@ class Client {
   }
 
   public getTrendingGifs({
-    limit = 25,
+    limit = INFINITE_LOAD_PAGE_SIZE,
     offset = 0,
     rating = "pg-13",
     bundle = "messaging_non_clips",
@@ -54,6 +56,28 @@ class Client {
     return fetcher<GetSearchSuggestionsResponse>(
       `${BASE_URL}/tags/related/${term}?${qs.stringify({
         api_key: API_KEY,
+      })}`,
+      {
+        method: "GET",
+        headers: {
+          ...this.headers,
+        },
+      }
+    );
+  }
+
+  public getGifsBySearchTerm({
+    q,
+    limit = INFINITE_LOAD_PAGE_SIZE,
+    offset = 0,
+    rating = "pg-13",
+    bundle = "messaging_non_clips",
+  }: GetGifsBySearchTermRequest) {
+    return fetcher<GetTrendingGifsResponse>(
+      `${BASE_URL}/gifs/search?${qs.stringify({
+        api_key: API_KEY,
+        ...{ q, limit, offset, rating, bundle },
+        lang: "en",
       })}`,
       {
         method: "GET",
