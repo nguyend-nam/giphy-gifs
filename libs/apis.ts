@@ -31,8 +31,8 @@ class Client {
   }
 
   public getTrendingGifs({
-    limit,
-    offset = 25,
+    limit = 25,
+    offset = 0,
     rating = "pg-13",
     bundle = "messaging_non_clips",
   }: GetTrendingGifsRequest) {
