@@ -31,7 +31,7 @@ export const Intro = () => {
           }
         )}
       >
-        <span className="z-10 uppercase text-white text-4xl md:text-5xl font-extrabold bg-gradient-to-l from-indigo-500 to-rose-500 !bg-clip-text text-transparent">
+        <span className="z-10 uppercase text-4xl md:text-5xl font-extrabold bg-gradient-to-l from-indigo-500 to-rose-500 !bg-clip-text text-transparent">
           Giphy
         </span>
         <div
