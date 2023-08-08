@@ -11,6 +11,12 @@ export default function Document() {
         <meta property="og:title" content="Giphy" />
         <meta property="og:description" content="" />
         <meta property="og:image" content="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <body>
         <Main />

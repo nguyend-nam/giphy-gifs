@@ -5,6 +5,7 @@
 
 .ant-select-selector input {
   height: 100% !important;
+  font-size: 18px !important;
 }
 
 .ant-select-dropdown {
@@ -22,4 +23,9 @@
 
 .ant-spin-dot .ant-spin-dot-item {
   background-color: rgb(99 102 241);
+}
+
+.ant-select-item-option {
+  border-bottom: 1px dashed #eee !important;
+  padding: 12px !important;
 }

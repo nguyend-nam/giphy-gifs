@@ -66,7 +66,7 @@ export const InfiniteScroll = (props: Props<TrendingGifItem[]>) => {
           ) : (
             <div className="flex flex-col gap-2 items-center p-2">
               <Spin size="large" />
-              <span className="text-indigo-50 uppercase">Loading More</span>
+              <span className="text-indigo-50">Loading More</span>
             </div>
           )}
         </div>
