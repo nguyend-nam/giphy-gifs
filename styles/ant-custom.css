@@ -30,3 +30,20 @@
   border-bottom: 1px dashed #eee !important;
   padding: 12px !important;
 }
+
+.ant-drawer-content-wrapper {
+  height: calc(100vh - 88px) !important;
+  border-radius: 20px 20px 0 0 !important;
+  padding-top: 3px;
+  overflow: hidden;
+  background-image: linear-gradient(
+    to top right,
+    rgb(99 102 241),
+    rgb(244 63 94)
+  ) !important;
+}
+
+.ant-drawer-content {
+  border-radius: 23px 23px 0 0 !important;
+  background-color: #101015 !important;
+}

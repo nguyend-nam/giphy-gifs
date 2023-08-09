@@ -53,7 +53,9 @@ export const TrendingGifsList = () => {
               media: [640, 1280, 1920],
             }}
             className="min-h-[30vh]"
-            render={(item) => <GifImageItemRender item={item} />}
+            render={(item, i) => (
+              <GifImageItemRender key={`${item.id}-${i}`} item={item} />
+            )}
           />
         )}
         pageSize={INFINITE_LOAD_PAGE_SIZE}
@@ -76,6 +78,7 @@ const GifImageItemRender = ({ item }: { item: TrendingGifItem }) => {
   return (
     <GifImageItem
       key={item.id}
+      id={item.id}
       preview={false}
       alt={item.title}
       src={
@@ -87,9 +90,12 @@ const GifImageItemRender = ({ item }: { item: TrendingGifItem }) => {
       wrapperClassName="block"
       containerClassName="!rounded-md overflow-hidden relative"
       containerStyle={{
-        paddingBottom: `calc(${parseFloat(
-          item.images.original.height
-        )} / ${parseFloat(item.images.original.width)} * 100%)`,
+        paddingBottom:
+          item.images.original.height && item.images.original.width
+            ? `calc(${parseFloat(item.images.original.height)} / ${parseFloat(
+                item.images.original.width
+              )} * 100%)`
+            : "unset",
         backgroundColor: bgColor,
       }}
       user={item?.user}

@@ -130,3 +130,10 @@ export interface GetGifsBySearchTermRequest {
     | "sticker_layering"
     | "low_bandwidth";
 }
+
+export interface GetGifByIDRequest {
+  id: string;
+  rating?: "g" | "pg" | "pg-13" | "r";
+}
+
+export interface GetGifByIDResponse extends BaseResponse<TrendingGifItem> {}
