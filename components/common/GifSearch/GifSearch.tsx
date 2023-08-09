@@ -37,7 +37,10 @@ export const GifSearch = ({ className, onChange }: Props) => {
 
   return (
     <Form
-      className={cx("flex justify-center py-4 gap-4", className)}
+      className={cx(
+        "z-10 bg-black flex justify-center py-4 gap-4 sticky top-0",
+        className
+      )}
       noValidate
       onFinish={() => {
         onChange(search);

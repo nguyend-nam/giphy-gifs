@@ -12,7 +12,7 @@ interface Props<T> {
   // eslint-disable-next-line no-unused-vars
   itemGetter: (params: any) => SWRResponse<any, any, any>;
   totalItems: number;
-  renderedAmount?: number;
+  offsetAmount?: number;
   LoadingRender?: () => JSX.Element;
   commonItemGetterParams?: object;
 }
@@ -23,7 +23,7 @@ export const InfiniteScroll = (props: Props<TrendingGifItem[]>) => {
     pageSize,
     itemGetter,
     totalItems,
-    renderedAmount = 0,
+    offsetAmount = 0,
     LoadingRender,
     commonItemGetterParams,
   } = props;
@@ -33,7 +33,7 @@ export const InfiniteScroll = (props: Props<TrendingGifItem[]>) => {
 
   const currentPageSWR = itemGetter({
     limit: pageSize,
-    offset: renderedAmount,
+    offset: offsetAmount,
     ...commonItemGetterParams,
   });
 
@@ -42,7 +42,7 @@ export const InfiniteScroll = (props: Props<TrendingGifItem[]>) => {
       ? null
       : {
           limit: pageSize,
-          offset: renderedAmount + pageSize,
+          offset: offsetAmount + pageSize,
           ...commonItemGetterParams,
         }
   );
@@ -51,7 +51,7 @@ export const InfiniteScroll = (props: Props<TrendingGifItem[]>) => {
     <>
       {renderPage(currentPageSWR?.data?.data || [])}
 
-      {renderedAmount < totalItems ? (
+      {offsetAmount < totalItems ? (
         <div
           className={cx(
             "h-[100px] w-full bg-transparent flex justify-center items-center overflow-hidden",
@@ -73,7 +73,7 @@ export const InfiniteScroll = (props: Props<TrendingGifItem[]>) => {
       ) : null}
 
       {!isVisible && visibleCounts === 0 ? null : (
-        <InfiniteScroll {...props} renderedAmount={renderedAmount + pageSize} />
+        <InfiniteScroll {...props} offsetAmount={offsetAmount + pageSize} />
       )}
     </>
   ) : null;

@@ -7,7 +7,7 @@ export const Intro = () => {
   return (
     <div
       className={cx(
-        "z-100 top-0 left-0 fixed h-screen w-screen overflow-hidden flex justify-center items-center",
+        "z-[999] top-0 left-0 fixed h-screen w-screen overflow-hidden flex justify-center items-center",
         {
           "delay-[2500ms] left-[100vw]": shouldEnd,
         }
@@ -24,14 +24,14 @@ export const Intro = () => {
       />
       <div
         className={cx(
-          "flex flex-col items-center justify-center min-h-[88px]",
+          "z-10 flex flex-col items-center justify-center min-h-[88px]",
           {
             "transition-all duration-[2000ms] delay-[500ms] translate-x-[-150vw] md:translate-x-[-110vw] opacity-0":
               shouldEnd,
           }
         )}
       >
-        <span className="z-10 uppercase text-4xl md:text-5xl font-extrabold bg-gradient-to-l from-indigo-500 to-rose-500 !bg-clip-text text-transparent">
+        <span className="uppercase text-4xl md:text-5xl font-extrabold bg-gradient-to-l from-indigo-500 to-rose-500 !bg-clip-text text-transparent">
           Giphy
         </span>
         <div

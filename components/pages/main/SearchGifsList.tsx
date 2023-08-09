@@ -46,6 +46,7 @@ export const SearchGifsList = ({ query }: Props) => {
               gap: new Array(3).fill(16),
               media: [640, 1280, 1920],
             }}
+            className="min-h-[30vh]"
             render={(item) => <GifImageItemRender item={item} />}
           />
         )}
