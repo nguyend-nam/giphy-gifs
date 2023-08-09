@@ -78,7 +78,11 @@ const GifImageItemRender = ({ item }: { item: TrendingGifItem }) => {
       key={item.id}
       preview={false}
       alt={item.title}
-      src={item.images.fixed_height_downsampled.url}
+      src={
+        item.images?.fixed_width_still?.url ||
+        item.images?.fixed_width?.url ||
+        item.images?.preview?.url
+      }
       className="object-cover absolute bg-transparent"
       wrapperClassName="block"
       containerClassName="!rounded-md overflow-hidden relative"

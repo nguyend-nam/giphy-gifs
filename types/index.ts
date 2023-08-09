@@ -67,6 +67,8 @@ export interface Images {
   fixed_width: ImageVariant;
   fixed_width_downsampled: ImageVariant;
   fixed_width_small: ImageVariant;
+  fixed_width_still?: ImageVariant;
+  preview?: ImageVariant;
 }
 
 export interface ImageVariant {
