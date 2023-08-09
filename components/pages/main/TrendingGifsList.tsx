@@ -92,6 +92,7 @@ const GifImageItemRender = ({ item }: { item: TrendingGifItem }) => {
         )} / ${parseFloat(item.images.original.width)} * 100%)`,
         backgroundColor: bgColor,
       }}
+      user={item?.user}
     />
   );
 };

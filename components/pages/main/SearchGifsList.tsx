@@ -4,7 +4,7 @@ import { GifImageItem } from "../../common/GifImageItem";
 import { InfiniteScroll } from "../../common/InfiniteScroll";
 import { Empty, Spin } from "antd";
 import { TrendingGifItem } from "../../../types";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useFetchGifsBySearchTerm } from "../../../hooks/useFetchGifsBySearchTerm";
 import {
   IMAGE_BG_PLACEHOLDER,
@@ -13,13 +13,22 @@ import {
 
 interface Props {
   query: string;
+  setSearchResultLength: Dispatch<SetStateAction<number>>;
 }
 
-export const SearchGifsList = ({ query }: Props) => {
+export const SearchGifsList = ({ query, setSearchResultLength }: Props) => {
   const { data, loading, isFirstLoading } = useFetchGifsBySearchTerm({
     q: query,
     limit: INFINITE_LOAD_PAGE_SIZE,
   });
+
+  useEffect(() => {
+    if (loading || isFirstLoading) {
+      setSearchResultLength(0);
+    } else {
+      setSearchResultLength(data?.pagination?.total_count || 0);
+    }
+  }, [data, isFirstLoading, loading, setSearchResultLength]);
 
   let content: JSX.Element | null = null;
 
@@ -87,6 +96,7 @@ const GifImageItemRender = ({ item }: { item: TrendingGifItem }) => {
         )} / ${parseFloat(item.images.original.width)} * 100%)`,
         backgroundColor: bgColor,
       }}
+      user={item?.user}
     />
   );
 };
