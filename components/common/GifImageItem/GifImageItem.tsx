@@ -1,5 +1,5 @@
 import { Avatar, Image, ImageProps } from "antd";
-import { createRef, CSSProperties, useId, useState } from "react";
+import { createRef, CSSProperties, useState } from "react";
 import { useIsInViewport } from "../../../hooks/useIsInViewport";
 import cx from "classnames";
 import { User } from "../../../types";
@@ -21,7 +21,6 @@ export const GifImageItem = ({
   user,
   ...rest
 }: Props) => {
-  const uniqueId = useId();
   const ref = createRef<any>();
   const { isVisible, visibleCounts } = useIsInViewport(ref);
   const [isHovering, setIsHovering] = useState(false);
@@ -46,7 +45,7 @@ export const GifImageItem = ({
         onMouseOut={() => setIsHovering(false)}
       >
         {!isVisible && visibleCounts === 0 ? null : (
-          <Image alt={uniqueId} preview={false} {...rest} />
+          <Image alt={`${user?.avatar_url}`} preview={false} {...rest} />
         )}
 
         {user && showUserInfo ? (

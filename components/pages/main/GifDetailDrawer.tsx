@@ -2,7 +2,6 @@ import { Avatar, Drawer, Empty, Image, ImageProps, Spin } from "antd";
 import { useFetchGifByID } from "../../../hooks/useFetchGifByID";
 import isValid from "date-fns/isValid";
 import format from "date-fns/format";
-import { useId } from "react";
 import Link from "next/link";
 import { CloseOutlined } from "@ant-design/icons";
 
@@ -13,7 +12,6 @@ interface Props extends ImageProps {
 }
 
 export const GifDetailDrawer = ({ id, open, onClose }: Props) => {
-  const uniqueId = useId();
   const { data, isLoading, isFirstLoading } = useFetchGifByID(
     open ? { id } : null
   );
@@ -111,7 +109,7 @@ export const GifDetailDrawer = ({ id, open, onClose }: Props) => {
               }}
             >
               <Image
-                alt={uniqueId}
+                alt={`${data?.data?.title}-detail`}
                 preview={false}
                 className="absolute"
                 wrapperClassName="block"
