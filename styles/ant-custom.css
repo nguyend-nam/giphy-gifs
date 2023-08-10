@@ -32,7 +32,7 @@
 }
 
 .ant-drawer-content-wrapper {
-  height: calc(100vh - 88px) !important;
+  height: calc(100% - 88px) !important;
   border-radius: 20px 20px 0 0 !important;
   padding-top: 3px;
   overflow: hidden;
@@ -46,4 +46,13 @@
 .ant-drawer-content {
   border-radius: 23px 23px 0 0 !important;
   background-color: #101015 !important;
+}
+
+.ant-drawer-body {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+.ant-drawer-mask {
+  background-color: #000000aa !important;
 }

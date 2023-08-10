@@ -94,7 +94,7 @@ export const GifDetailDrawer = ({ id, open, onClose }: Props) => {
           </div>
         </div>
 
-        <div className="mt-8 md:mt-16 flex flex-col md:flex-row gap-8 justify-between">
+        <div className="mt-6 md:mt-12 flex flex-col md:flex-row gap-6 md:gap-8 justify-between">
           <div className="flex-1 shrink-0">
             <div
               className="relative bg-gradient-to-tr from-indigo-500 to-rose-500"
@@ -119,7 +119,7 @@ export const GifDetailDrawer = ({ id, open, onClose }: Props) => {
               />
             </div>
           </div>
-          <div className="min-w-full md:min-w-[240px] !text-base divide-y divide-indigo-900">
+          <div className="min-w-full md:min-w-[240px] !text-base divide-y divide-indigo-900/50">
             {Object.entries(rowData).map((entry) => (
               <div
                 key={entry[0]}
@@ -136,7 +136,7 @@ export const GifDetailDrawer = ({ id, open, onClose }: Props) => {
               href={data?.data?.embed_url || "#"}
               target="_blank"
               rel="noreferrer"
-              className="!w-full block text-center rounded-sm p-2 h-max bg-indigo-500 !border-none !shrink-0"
+              className="!w-full block text-center rounded-md p-2 h-max bg-indigo-500 hover:bg-rose-500 !border-none !shrink-0"
             >
               <span className="font-semibold !text-white uppercase">Embed</span>
             </Link>
@@ -149,7 +149,7 @@ export const GifDetailDrawer = ({ id, open, onClose }: Props) => {
   return (
     <>
       {open ? (
-        <CloseOutlined className="text-[20px] z-10 !text-white absolute top-[34px] right-[34px]" />
+        <CloseOutlined className="text-[20px] blabla z-[9999] !text-white fixed top-[34px] right-[34px]" />
       ) : null}
 
       <Drawer placement="bottom" closable={false} onClose={onClose} open={open}>
