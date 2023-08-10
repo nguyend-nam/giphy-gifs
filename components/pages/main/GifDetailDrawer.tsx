@@ -149,7 +149,7 @@ export const GifDetailDrawer = ({ id, open, onClose }: Props) => {
   return (
     <>
       {open ? (
-        <CloseOutlined className="text-[20px] blabla z-[9999] !text-white fixed top-[34px] right-[34px]" />
+        <CloseOutlined className="text-[20px] blabla z-[9999] pointer-events-none !text-white fixed top-[34px] right-[34px]" />
       ) : null}
 
       <Drawer placement="bottom" closable={false} onClose={onClose} open={open}>
